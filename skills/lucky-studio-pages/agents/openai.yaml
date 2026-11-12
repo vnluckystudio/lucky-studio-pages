@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lucky Studio Pages"
+  short_description: "Manage shared public pages for Lucky Studio apps"
+  default_prompt: "Use $lucky-studio-pages to update this app's pages in the shared Lucky Studio GitHub Pages repository."
