@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "id": "com.vn.lucky.studio.sauanla",
+    "name": "Leaf & Flutter",
+    "platform": "iOS · iPhone & iPad",
+    "summary": "A relaxing color puzzle about hungry caterpillars, layered leaves, and butterflies.",
+    "support_email": "vn.lucky.studio@gmail.com",
+    "privacy": {
+      "updated": "2026-11-13",
+      "sections": [
+        [
+          "About this policy",
+          "Lucky Studio provides Leaf & Flutter, also known as Sâu ăn lá. This policy explains how information is handled in the app and when you contact us. It applies to this app only; other Lucky Studio apps have their own policies."
+        ],
+        [
+          "Game progress on your device",
+          "The app stores your unlocked levels and game preferences, including sound and speed settings, locally on your device. No Lucky Studio account or game server is required. Lucky Studio does not receive your saved game through a game backend. Device backups may be managed separately by your operating system and backup settings."
+        ],
+        [
+          "Advertising and third-party services",
+          "The app includes Google Mobile Ads (AdMob) for optional rewarded advertisements associated with Undo and Hint. Current pre-release versions use Google test advertisements. Production advertising has not yet been enabled. This policy will be reviewed when the production advertising configuration is finalized.",
+          "When the advertising SDK runs, Google may process IP addresses (which can indicate approximate location), device or app identifiers, ad views and interactions, crash reports, and performance information. This information can be used to deliver and measure advertising, prevent fraud, diagnose issues, and improve services. The exact processing depends on the SDK, configuration, device permissions, and applicable privacy choices. Test advertisements should not be understood to mean that the SDK processes no data.",
+          "For details, see Google's Privacy Policy and how Google uses information from apps that use its services, linked below."
+        ],
+        [
+          "Your choices",
+          "You can choose not to watch an optional rewarded advertisement. In the current test-ad version, the Ads Privacy entry opens this advertising section of the policy. Production consent choices will be provided where required before production advertising is enabled. You can also manage available advertising and tracking permissions in iOS Settings. Declining a rewarded advertisement does not stop you from playing the puzzle."
+        ],
+        [
+          "Support information",
+          "If you email Lucky Studio, we receive your email address and the message and attachments you choose to send. We use that information to respond to your request, investigate problems, and maintain the related support correspondence. Please avoid sending passwords, payment details, or other unnecessary sensitive information."
+        ],
+        [
+          "Sharing and service providers",
+          "Advertising information is processed by Google and its service providers under their applicable policies. Email providers process messages sent to our support address. Information may also be disclosed when necessary to meet legal obligations or protect rights and security. The app does not upload your local game save to Lucky Studio."
+        ],
+        [
+          "Retention and deletion",
+          "Local progress remains on your device until removed with the app's local data. Deleting the app rather than offloading it removes its active local app data; separate device backups may remain subject to your backup settings. Lucky Studio cannot remotely retrieve or delete a save that exists only on your device. Contact us to request access, correction, or deletion of support correspondence. We retain support information as needed to handle the request and applicable legal obligations. Google's retention and deletion practices are described in its own policy."
+        ],
+        [
+          "Children and privacy",
+          "The game does not ask players to create an account or enter a name, age, or email address to play. If you are a parent or guardian with a concern about a child's information, contact Lucky Studio. Production advertising settings and the app's audience classification will be finalized before release."
+        ],
+        [
+          "International processing and your rights",
+          "Advertising and email providers may process information in countries other than your own. Depending on where you live, you may have rights to access, correct, delete, or restrict the use of personal information, or to withdraw consent where processing relies on consent. Contact Lucky Studio about information you send us; use Google's privacy controls for information handled by Google."
+        ],
+        [
+          "Changes and contact",
+          "We update this page when the app's practices change and show the latest revision date above. For privacy questions and requests, contact Lucky Studio at vn.lucky.studio@gmail.com or +821083312512."
+        ]
+      ]
+    }
+  }
+]

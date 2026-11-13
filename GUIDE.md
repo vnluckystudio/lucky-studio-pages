@@ -32,7 +32,7 @@ Ví dụ registry cho trang giới thiệu và support (thay toàn bộ giá tr�
 ]
 ```
 
-Hai trường tùy chọn `privacy` và `terms` dùng cùng cấu trúc: `{"updated":"YYYY-MM-DD","sections":[["Heading","Reviewed paragraph."]]}`. Mỗi section gồm tiêu đề và ít nhất một đoạn văn bản thuần. Generator escape HTML; không chèn script hay HTML vào registry. Ngày `updated` phải là ngày sửa nội dung thật.
+Hai trường tùy chọn `privacy` và `terms` dùng cùng cấu trúc: `{"updated":"YYYY-MM-DD","sections":[["Heading","Reviewed paragraph."]]}`. Mỗi section gồm tiêu đề và ít nhất một đoạn văn bản thuần; generator tạo anchor từ tiêu đề để app có thể liên kết trực tiếp đến một mục chính sách. Trường tùy chọn `support_email` thêm địa chỉ email vào trang hỗ trợ của app. Generator escape HTML; không chèn script hay HTML vào registry. Ngày `updated` phải là ngày sửa nội dung thật.
 
 ## URL của từng app
 
