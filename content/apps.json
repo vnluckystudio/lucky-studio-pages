@@ -3,7 +3,28 @@
     "id": "com.vn.lucky.studio.sauanla",
     "name": "Leaf & Flutter",
     "platform": "iOS · iPhone & iPad",
-    "summary": "A relaxing color puzzle about hungry caterpillars, layered leaves, and butterflies.",
+    "summary": "Place colorful caterpillar cups, uncover the leaves beneath, and grow a garden full of butterflies across 100 cozy puzzles.",
+    "marketing": {
+      "eyebrow": "A cozy color puzzle for iPhone & iPad",
+      "tagline": "A little color, a little strategy, and a garden that comes to life.",
+      "intro": "Meet a hungry crew of caterpillars. Choose the right cups, guide each one to matching leaves, and watch every bite uncover more of the board. Clear a puzzle and see your tiny garden take flight.",
+      "highlights": [
+        ["Uncover the layers", "Leaves overlap in colorful layers. Feed caterpillars the matching color to nibble away the top leaves and reveal what is hiding underneath."],
+        ["A garden that grows", "Watch caterpillars hatch, wriggle, grow, and transform into butterflies as you work through each puzzle."],
+        ["100 puzzles to explore", "Travel through 10 chapters that gradually introduce six caterpillar colors and 18 distinct leaf silhouettes."],
+        ["Settle into your rhythm", "Adjust the game speed, switch the sound on or off, and enjoy original nature music with soft, leafy eating sounds."],
+        ["Ready when you are", "Core puzzles and saved progress stay on your device, so you can play offline without creating an account."],
+        ["A hand when you need one", "Optional rewarded ads can offer Undo and Hint. If an ad is unavailable, each level attempt includes one free use of each."]
+      ],
+      "story_heading": "A little garden of puzzles",
+      "story": "Each board is a small color-and-layer puzzle. The right caterpillar can clear a path to a different color underneath, so take a moment to look over the leaves before choosing your next cup. As the chapters unfold, new colors and natural leaf shapes add fresh possibilities.",
+      "steps": [
+        ["Pick a cup", "Choose a cup of caterpillars from the tray and place or drag it into an open seat."],
+        ["Match the leaves", "Caterpillars travel to exposed leaves of their color and nibble them away, opening the layers below."],
+        ["Clear the board", "Plan the next color, uncover every layer, and watch the caterpillars complete their transformation."]
+      ],
+      "closing": "Made for iPhone and iPad. No account required; your progress and preferences are saved locally on your device."
+    },
     "support_email": "vn.lucky.studio@gmail.com",
     "privacy": {
       "updated": "2026-11-13",

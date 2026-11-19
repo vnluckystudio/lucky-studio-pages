@@ -8,7 +8,7 @@ from pathlib import Path
 import unicodedata
 
 ROOT = Path(__file__).resolve().parents[1]
-STYLE = '''body{margin:0;background:#f5f3ee;color:#232d27;font:18px/1.65 system-ui,sans-serif}main{max-width:900px;margin:auto;padding:64px 24px}a{color:#205e43}h1{font-size:clamp(2.4rem,8vw,4rem);line-height:1.1}h2{line-height:1.3}article{background:white;border:1px solid #deded4;border-radius:16px;padding:24px;margin:24px 0}nav a{margin-right:20px}footer{margin-top:64px;border-top:1px solid #ccc;padding-top:24px;font-size:15px}p{overflow-wrap:anywhere}.language-switch{display:flex;gap:8px;margin:24px 0}.language-switch button{border:1px solid #205e43;border-radius:999px;background:white;color:#205e43;font:inherit;font-size:16px;padding:8px 16px;cursor:pointer}.language-switch button[aria-pressed="true"]{background:#205e43;color:white}:focus-visible{outline:3px solid #bf692c;outline-offset:4px}'''
+STYLE = '''body{margin:0;background:#f5f3ee;color:#232d27;font:18px/1.65 system-ui,sans-serif}main{max-width:900px;margin:auto;padding:48px 24px 64px}a{color:#205e43}h1{font-size:clamp(2.6rem,8vw,5rem);line-height:1.02;letter-spacing:-.045em}h2{line-height:1.25;letter-spacing:-.02em}nav a{margin-right:20px}.hero{padding:72px 0 48px}.eyebrow{color:#52725b;font-size:14px;font-weight:750;letter-spacing:.14em;text-transform:uppercase}.hero h1{max-width:760px;margin:14px 0 20px}.tagline{max-width:690px;color:#476251;font-size:clamp(1.25rem,3vw,1.7rem);line-height:1.45}.lead{max-width:720px}.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr));gap:16px;margin:28px 0 52px}.feature-card,article{background:#fff;border:1px solid #deded4;border-radius:18px;padding:24px}.feature-card h3{margin:0 0 8px;font-size:1.16rem}.feature-card p,article p{margin:0;color:#59645b}.marketing-section{padding:32px 0;border-top:1px solid #d8d8ce}.steps{list-style:none;padding:0;counter-reset:step}.steps li{counter-increment:step;position:relative;padding:16px 16px 16px 64px;margin:12px 0;background:#ebece2;border-radius:14px}.steps li:before{content:counter(step);position:absolute;left:18px;top:15px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#41684f;color:white;font-weight:700}.note{padding:20px 24px;background:#e3eadb;border-radius:16px;color:#35533f}.app-links{padding:20px 0 4px}article{margin:24px 0}footer{margin-top:64px;border-top:1px solid #ccc;padding-top:24px;font-size:15px}p{overflow-wrap:anywhere}.language-switch{display:flex;gap:8px;margin:24px 0}.language-switch button{border:1px solid #205e43;border-radius:999px;background:white;color:#205e43;font:inherit;font-size:16px;padding:8px 16px;cursor:pointer}.language-switch button[aria-pressed="true"]{background:#205e43;color:white}:focus-visible{outline:3px solid #bf692c;outline-offset:4px}@media(max-width:560px){main{padding:28px 18px 48px}.hero{padding:48px 0 32px}.feature-card{padding:20px}}'''
 
 
 def esc(value):
@@ -84,6 +84,44 @@ document.querySelectorAll('[data-language-choice]').forEach(button => {
     return page(f"{app['name']} — {title}", body, '../../../')
 
 
+def render_marketing(app):
+    marketing = app.get('marketing')
+    if marketing is None:
+        links = '<a href="support/">Support</a>'
+        for kind, title in (('privacy', 'Privacy Policy'), ('terms', 'Terms')):
+            if app.get(kind) is not None:
+                links += ' · <a href="' + kind + '/">' + title + '</a>'
+        return f'<h1>{esc(app["name"])}</h1><p>{esc(app["platform"])}</p><p>{esc(app["summary"])}</p><nav aria-label="App pages">{links}</nav>'
+    for key in ('eyebrow', 'tagline', 'intro', 'closing'):
+        if not isinstance(marketing.get(key), str) or not marketing[key].strip():
+            raise ValueError(f'{app["id"]}: marketing.{key} must be a nonempty string')
+    highlights = marketing.get('highlights')
+    steps = marketing.get('steps')
+    if not isinstance(highlights, list) or not highlights or not isinstance(steps, list) or not steps:
+        raise ValueError(f'{app["id"]}: marketing needs highlights and steps')
+    if any(not isinstance(item, list) or len(item) != 2 or any(not isinstance(x, str) or not x.strip() for x in item) for item in highlights + steps):
+        raise ValueError(f'{app["id"]}: malformed marketing highlight or step')
+
+    body = '<header class="hero"><p class="eyebrow">' + esc(marketing['eyebrow']) + '</p>'
+    body += '<h1>' + esc(app['name']) + '</h1><p class="tagline">' + esc(marketing['tagline']) + '</p>'
+    body += '<p class="lead">' + esc(marketing['intro']) + '</p><p>' + esc(app['platform']) + '</p></header>'
+    body += '<section aria-label="Game highlights" class="feature-grid">'
+    for title, description in highlights:
+        body += '<article class="feature-card"><h3>' + esc(title) + '</h3><p>' + esc(description) + '</p></article>'
+    body += '</section><section class="marketing-section"><h2>' + esc(marketing.get('story_heading', 'About the game')) + '</h2>'
+    body += '<p>' + esc(marketing['story']) + '</p></section>' if marketing.get('story') else ''
+    body += '<section class="marketing-section"><h2>How to play</h2><ol class="steps">'
+    for title, description in steps:
+        body += '<li><strong>' + esc(title) + '</strong><br>' + esc(description) + '</li>'
+    body += '</ol></section><p class="note">' + esc(marketing['closing']) + '</p>'
+    body += '<nav aria-label="App pages" class="app-links"><a href="support/">Support</a>'
+    for kind, title in (('privacy', 'Privacy Policy'), ('terms', 'Terms')):
+        if app.get(kind) is not None:
+            body += ' · <a href="' + kind + '/">' + title + '</a>'
+    body += '</nav>'
+    return body
+
+
 def render(apps):
     if not isinstance(apps, list):
         raise ValueError('content/apps.json must be an array')
@@ -107,7 +145,7 @@ def render(apps):
             title = 'Privacy Policy' if kind == 'privacy' else 'Terms'
             files[f'apps/{app_id}/{kind}/index.html'] = render_policy(app, kind, policy)
             links += f' · <a href="{kind}/">{title}</a>'
-        files[f'apps/{app_id}/index.html'] = page(app['name'], f'<h1>{name}</h1><p>{esc(app["platform"])}</p><p>{esc(app["summary"])}</p><nav aria-label="App pages">{links}</nav>', '../../')
+        files[f'apps/{app_id}/index.html'] = page(app['name'], render_marketing(app), '../../')
         email = app.get('support_email')
         if email is not None and (not isinstance(email, str) or not re.fullmatch(r'[^@\s]+@[^@\s]+\.[^@\s]+', email)):
             raise ValueError(f'{app_id}: support_email must be a valid email address')
